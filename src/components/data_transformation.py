@@ -11,7 +11,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler , OneHotEncoder   
 from sklearn.model_selection import train_test_split
 
-from src.components.data_ingestion import DataIngestion
+#from src.components.data_ingestion import DataIngestion
 from src.exception import CustomException
 from src.logger import logging
 from dataclasses import dataclass
@@ -24,15 +24,16 @@ class DataTransformationConfig:
     preprocessor_obj_file_path = os.path.join('artifacts', "preprocessor.pkl")
 
 class DataTransformation:
-    '''
-    This function is responsible for data transformation.
-
-    '''
+    
     def __init__(self):
         self.data_transformation_config = DataTransformationConfig()
 
 
     def get_data_transformer_object(self):
+        '''
+        This function is responsible for data transformation.
+
+        '''
         try:
             
             numerical_columns = ['writing_score', 'reading_score']
@@ -115,11 +116,13 @@ class DataTransformation:
             )
         except Exception as e:
             raise CustomException(e, sys)
-        
+'''
 if __name__ == "__main__":
     obj = DataIngestion()
     train_data, test_data, = obj.initiate_data_ingestion()
 
     data_transformation = DataTransformation()
     data_transformation.initiate_data_transformation(train_path=train_data, test_path=test_data)
+
+'''       
 
