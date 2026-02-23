@@ -8,7 +8,6 @@ from sklearn.ensemble import (
     AdaBoostRegressor,
     GradientBoostingRegressor,
     RandomForestRegressor,
-    RandomForestRegressor,
 )
 
 from sklearn.linear_model import LinearRegression
@@ -35,12 +34,12 @@ class ModelTrainer:
     def initiate_model_trainer(self,train_array, test_array):
         try:
             logging.info("Split training and test input data")
-            X_train, y_train,X_test, y_test = (
-                train_array[:,:-1],
-                train_array[:,-1],
-                test_array[:,:-1],
-                test_array[:,-1]
-            )
+            X_train = train_array[:, :-1]
+            y_train = train_array[:, -1]
+
+            X_test = test_array[:, :-1]
+            y_test = test_array[:, -1]
+
 
             models = {
                 "Random Forest": RandomForestRegressor(),
